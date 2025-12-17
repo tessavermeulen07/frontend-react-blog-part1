@@ -2,7 +2,7 @@ import './App.css';
 import logo from './assets/logo-white.png';
 import {Route, Routes} from "react-router-dom";
 import Home from "./pages/home/Home.jsx";
-import AllBlogs from "./pages/overall-view/AllBlogs.jsx";
+import AllBlogs from "./pages/all-blogs/AllBlogs.jsx";
 import NewPost from "./pages/new-post/NewPost.jsx";
 import NotFound from "./pages/404/NotFound.jsx";
 import Navigation from "./navigation/Navigation.jsx";
