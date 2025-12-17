@@ -1,8 +1,13 @@
 import './Home.css';
+import logo from "../../assets/logo-white.png";
 
 function Home() {
     return (
         <>
+            <header className="page-container">
+                <img src={logo} alt="Company logo"/>
+                <h1>Begin hier met het maken van jouw blog-applicatie!</h1>
+            </header>
             <h1>Dit is de Home pagina</h1>
         </>
     )
