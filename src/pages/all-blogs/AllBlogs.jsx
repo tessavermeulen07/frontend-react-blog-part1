@@ -1,9 +1,9 @@
 import './AllBlogs.css';
 import posts from '../../constants/data.json'
 import {Link, useParams} from "react-router-dom";
+import SingleBlog from "../single-blog/SingleBlog.jsx";
 
 posts.shares = undefined;
-
 posts.author = undefined;
 
 function AllBlogs() {
@@ -12,7 +12,7 @@ function AllBlogs() {
 
     const {id} = useParams();
     const idAsNumber = Number(id);
-    const currentPost = posts.find((posts) => posts.id === idAsNumber);
+    posts.find((posts) => posts.id === idAsNumber);
 
     // Notatie op deze manier:
     // De Smaken van Italië (Anna de Kok)
@@ -26,14 +26,15 @@ function AllBlogs() {
                 {posts.map((blog) => {
                         return <li key={blog.id}>
                             <article className="list-item-container">
-                                <span><Link to="{`/blog/${blog.id}`}"
-                                             element={<AllBlogs/>}>{blog.title}</Link> ({blog.author})</span>
+                                <span><Link to={`/blog/${blog.id}`}
+                                             element={<SingleBlog/>}>{blog.title}</Link> ({blog.author})</span>
                                 <span>{blog.comments} reacties - {blog.shares} keer gedeeld</span>
                             </article>
                         </li>
                     }
                 )}
             </ul>
+
         </>
     )
 }
