@@ -17,12 +17,10 @@ nav {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 20px;
 }
 
 .logo-img {
-    width: 20%;
-    padding: 20px 0 20px 20px;
+    width: 200px;
 }
 
 .navbar-list-section {
@@ -33,7 +31,7 @@ nav {
     list-style-type: none;
     gap: 50px;
     flex-shrink: 0;
-    margin: 20px 50px 20px 0;
+    margin: 20px 20px 20px 0;
 }
 
 nav a,

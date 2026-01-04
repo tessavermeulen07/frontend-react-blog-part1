@@ -16,15 +16,11 @@ function App() {
             <main>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
-                    {/*Deze werkt*/}
                     <Route path="/alle-blogs" element={<AllBlogs/>}/>
-                    {/*Deze werkt*/}
                     <Route path="/nieuwe-post" element={<NewPost/>}/>
-                    {/*Deze werkt*/}
                     <Route path="/blog/:id" element={<SingleBlog/>}/>
 
                     <Route path="*" element={<NotFound/>}/>
-                    {/*Deze werkt*/}
                 </Routes>
             </main>
         </>

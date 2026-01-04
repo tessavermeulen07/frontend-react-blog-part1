@@ -19,12 +19,12 @@ function SingleBlog() {
 
     return (
         <>
-            <section>
-                <h2>{post.title} ({post.readTime} minuten)</h2>
-                <h3>{post.subtitle}</h3>
+            <section className="main-container">
+                <h1>{post.title} </h1>
+                <h2>{post.subtitle}</h2>
                 <p className="meta-data">Geschreven door {post.author} op {dateFormat(post.created)}</p>
+                ({post.readTime} minuten)
                 <div>
-                    {/* Hier komt de inhoud van je blog */}
                     <p>{post.content}</p>
                 </div>
                 <p>{post.comments} reacties - {post.shares} gedeeld</p>

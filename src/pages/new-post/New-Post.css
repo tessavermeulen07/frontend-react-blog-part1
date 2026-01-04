@@ -1,0 +1,23 @@
+body {
+    background-color: #E8E9ED;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+
+    margin-bottom: 20px;
+}
+
+textarea {
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+}

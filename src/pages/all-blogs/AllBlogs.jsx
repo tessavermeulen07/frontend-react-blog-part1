@@ -20,21 +20,21 @@ function AllBlogs() {
 
     return (
         <>
-            <h1>Dit is de pagina met alle blogposts</h1>
-            <p>Aantal blogposts op deze website: {posts.length}</p>
-            <ul className="list-container">
-                {posts.map((blog) => {
-                        return <li key={blog.id}>
-                            <article className="list-item-container">
+            <div className="main-container">
+                <h1>Aantal blogposts op deze website: {posts.length}</h1>
+                <ul className="list-container">
+                    {posts.map((blog) => {
+                            return <li key={blog.id}>
+                                <article className="list-item-container">
                                 <span><Link to={`/blog/${blog.id}`}
-                                             element={<SingleBlog/>}>{blog.title}</Link> ({blog.author})</span>
-                                <span>{blog.comments} reacties - {blog.shares} keer gedeeld</span>
-                            </article>
-                        </li>
-                    }
-                )}
-            </ul>
-
+                                            element={<SingleBlog/>}>{blog.title}</Link> ({blog.author})</span>
+                                    <span>{blog.comments} reacties - {blog.shares} keer gedeeld</span>
+                                </article>
+                            </li>
+                        }
+                    )}
+                </ul>
+            </div>
         </>
     )
 }

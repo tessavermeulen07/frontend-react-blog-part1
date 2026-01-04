@@ -1,15 +1,39 @@
+body {
+    background-color: #E8E9ED;
+}
+
+a,
+a:active,
+a:visited {
+    color: #38E991;
+    font-weight: bold;
+}
+
+.main-container {
+    margin: 30px;
+}
+
 .list-container {
-    border: 1px solid red;
+    border: 1px solid transparent;
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .list-item-container {
-    border: 1px solid blue;
+    border: 1px solid transparent;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: #CFD1DA 5px 5px 5px;
+
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    margin: 10px;
-    padding: 0px;
+    padding: 10px;
     flex-wrap: wrap;
+    gap: 20px;
 }

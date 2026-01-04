@@ -51,78 +51,78 @@ function NewPost() {
 
     return (
         <>
-            <h1>Dit is de pagina voor een het plaatsen van een nieuwe blog</h1>
-            {/*Alle velden moeten verplicht worden ingevuld. De blogpost moet minimaal 300 en maximaal 2000 karakters lang*/}
-            {/*zijn. Als er niet aan deze voorwaarden is voldaan, kan de post niet worden verzonden.*/}
+            <h1>Post toevoegen</h1>
 
-            <form onSubmit={handleSubmit}>
-                <TextLabel
-                    labelHTML="title"
-                    startTextLabel="Titel"
-                    typeOfLabel="text"
-                    idOfLabel="title"
-                    nameOfLabel="title"
-                    sizeOfLabel="100"
-                    valueOfLabel={titleValue}
-                    onChangeOfLabel={(e) => setTitleValue(e.target.value)}
-                />
 
-                <TextLabel
-                    labelHTML="subtitle"
-                    startTextLabel="Subtitel"
-                    typeOfLabel="text"
-                    idOfLabel="subtitle"
-                    nameOfLabel="subtitle"
-                    sizeOfLabel="100"
-                    valueOfLabel={subTitleValue}
-                    onChangeOfLabel={(e) => setSubTitleValue(e.target.value)}
-                />
+            <div className="form-container">
+                <form onSubmit={handleSubmit}>
+                    <TextLabel
+                        labelHTML="title"
+                        startTextLabel="Titel"
+                        typeOfLabel="text"
+                        idOfLabel="title"
+                        nameOfLabel="title"
+                        sizeOfLabel="100"
+                        valueOfLabel={titleValue}
+                        onChangeOfLabel={(e) => setTitleValue(e.target.value)}
+                    />
 
-                <TextLabel
-                    labelHTML="author"
-                    startTextLabel="Auteur"
-                    typeOfLabel="text"
-                    idOfLabel="author"
-                    nameOfLabel="author"
-                    sizeOfLabel="100"
-                    valueOfLabel={authorValue}
-                    onChangeOfLabel={(e) => setAuthorValue(e.target.value)}
-                />
+                    <TextLabel
+                        labelHTML="subtitle"
+                        startTextLabel="Subtitel"
+                        typeOfLabel="text"
+                        idOfLabel="subtitle"
+                        nameOfLabel="subtitle"
+                        sizeOfLabel="100"
+                        valueOfLabel={subTitleValue}
+                        onChangeOfLabel={(e) => setSubTitleValue(e.target.value)}
+                    />
 
-                <label htmlFor="message">
-                    <p>Bericht</p>
-                    <textarea
-                        id="message"
-                        name="message"
-                        rows="30"
-                        cols="100"
-                        value={messageValue}
-                        onChange={(e) => setMessageValue(e.target.value)}
-                    >
+                    <TextLabel
+                        labelHTML="author"
+                        startTextLabel="Naam en achternaam"
+                        typeOfLabel="text"
+                        idOfLabel="author"
+                        nameOfLabel="author"
+                        sizeOfLabel="100"
+                        valueOfLabel={authorValue}
+                        onChangeOfLabel={(e) => setAuthorValue(e.target.value)}
+                    />
+
+                    <label htmlFor="message">
+                        <p>Blogpost</p>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="15"
+                            cols="100"
+                            value={messageValue}
+                            onChange={(e) => setMessageValue(e.target.value)}
+                        >
                 </textarea>
-                </label>
+                    </label>
 
-                <div>
+                    <div>
                     <span style={{color: wordCount < 300 ? 'red' : 'green'}}>
                     Woorden: {wordCount} / 300
                     </span>
-                    {" | "}
-                    <span style={{color: charCount > 2000 ? 'red' : 'black'}}>
+                        {" | "}
+                        <span style={{color: charCount > 2000 ? 'red' : 'black'}}>
                     Karakters: {charCount} / 2000
                     </span>
-                </div>
+                    </div>
 
-                {error && <p>{error}</p>}
+                    {error && <p>{error}</p>}
 
-                <Button
-                    typeOfButton="submit"
-                    nameOfButton="send"
-                    valueOfButton="send"
-                    textOnButton="Verstuur"
-                    onClickOfButton={() => navigate("/alle-blogs")}
-                />
-
-            </form>
+                    <Button
+                        typeOfButton="submit"
+                        nameOfButton="send"
+                        valueOfButton="send"
+                        textOnButton="Verstuur"
+                        onClickOfButton={() => navigate("/alle-blogs")}
+                    />
+                </form>
+            </div>
         </>
     )
 }
