@@ -3,6 +3,9 @@ import {useState} from "react";
 import TextLabel from "../../components/textLabel/TextLabel.jsx";
 import Button from "../../components/button/Button.jsx";
 import readTime from "../../helpers/readTime.js";
+import {useNavigate} from "react-router-dom";
+import allBlogs from "../all-blogs/AllBlogs.jsx";
+import AllBlogs from "../all-blogs/AllBlogs.jsx";
 
 
 function NewPost() {
@@ -15,9 +18,11 @@ function NewPost() {
     const charCount = messageValue.length;
     const wordCount = messageValue.trim() === "" ? 0 : messageValue.trim().split(/\s+/).length
 
+    let navigate = useNavigate();
+
     const handleSubmit = (event) => {
 
-        event.preventDefault();
+       event.preventDefault();
 
         const maxWords = messageValue.split(' ');
         const date = new Date()
@@ -114,6 +119,7 @@ function NewPost() {
                     nameOfButton="send"
                     valueOfButton="send"
                     textOnButton="Verstuur"
+                    onClickOfButton={() => navigate("/alle-blogs")}
                 />
 
             </form>
