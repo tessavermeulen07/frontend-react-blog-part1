@@ -2,6 +2,7 @@ import './New-Post.css'
 import {useState} from "react";
 import TextLabel from "../../components/textLabel/TextLabel.jsx";
 import Button from "../../components/button/Button.jsx";
+import readTime from "../../helpers/readTime.js";
 
 
 function NewPost() {
@@ -11,26 +12,41 @@ function NewPost() {
     const [messageValue, setMessageValue] = useState('');
     const [error, setError] = useState('')
 
+    const charCount = messageValue.length;
+    const wordCount = messageValue.trim() === "" ? 0 : messageValue.trim().split(/\s+/).length
+
     const handleSubmit = (event) => {
+
         event.preventDefault();
 
-        if (!titleValue && !subTitleValue && !authorValue && !messageValue) {
-            setError('Zorg dat alle velden zijn ingevuld!')
-        } else setError('')
+        const maxWords = messageValue.split(' ');
+        const date = new Date()
+
+        if (!titleValue || !subTitleValue || !authorValue || !messageValue) {
+            setError('Zorg dat alle velden zijn ingevuld.');
+        } else if (messageValue.length > 2000) {
+            setError('Je bericht bevat meer dan 2000 karakters.');
+        } else if (maxWords.length < 300) {
+            setError('Je bericht bevat minder dan 300 woorden.');
+        } else {
+            setError('');
+        }
 
         console.log(`
-        Hier komt alles te staan van het blog
+        "title": ${titleValue}
+        "subtitle": ${subTitleValue}
+        "content": ${messageValue}
+        "author": ${authorValue}
+        "created": ${date.toISOString()}
+        "readTime": ${readTime(messageValue)} minuten leestijd
+        "comments": ${0}
+        "shares": ${0}
         `);
     }
 
     return (
         <>
             <h1>Dit is de pagina voor een het plaatsen van een nieuwe blog</h1>
-            {/*In het formulier om een blogpost te plaatsen:*/}
-            {/*Titel*/}
-            {/*Subtitel*/}
-            {/*Auteur*/}
-            {/*Bericht*/}
             {/*Alle velden moeten verplicht worden ingevuld. De blogpost moet minimaal 300 en maximaal 2000 karakters lang*/}
             {/*zijn. Als er niet aan deze voorwaarden is voldaan, kan de post niet worden verzonden.*/}
 
@@ -80,7 +96,19 @@ function NewPost() {
                     >
                 </textarea>
                 </label>
+
+                <div>
+                    <span style={{color: wordCount < 300 ? 'red' : 'green'}}>
+                    Woorden: {wordCount} / 300
+                    </span>
+                    {" | "}
+                    <span style={{color: charCount > 2000 ? 'red' : 'black'}}>
+                    Karakters: {charCount} / 2000
+                    </span>
+                </div>
+
                 {error && <p>{error}</p>}
+
                 <Button
                     typeOfButton="submit"
                     nameOfButton="send"
