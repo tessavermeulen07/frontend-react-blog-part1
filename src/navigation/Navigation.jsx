@@ -32,3 +32,31 @@ return (
 }
 
 export default Navigation;
+
+
+
+// Van Yvonne, kijk even naar de navigatie manier met active
+// function Navigation() {
+//     return (
+//         <header>
+//
+//             <nav>
+//                 <div className="nav-container">
+//                     <ul className="navbar">
+//                         <img src={logo} alt="logo-medium-png"/>
+//                         <li>
+//                             <NavLink to={"/"} className={({isActive}) => isActive === true ? "active-menu-link" : "default-menu-link"}>Home</NavLink>
+//                         </li>
+//                         <li>
+//                             <NavLink to={"/overview-page"} className={({isActive}) => isActive === true ? "active-menu-link" : "default-menu-link"}>Alle posts</NavLink>
+//                         </li>
+//                         <li>
+//                             <NavLink to={"/blogposts"} className={({isActive}) => isActive === true ? "active-menu-link" : "default-menu-link"}>Nieuwe post</NavLink>
+//                         </li>
+//                     </ul>
+//                 </div>
+//             </nav>
+//         </header>
+//     );
+// }
+// export default Navigation;
