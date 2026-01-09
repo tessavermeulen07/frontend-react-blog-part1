@@ -3,9 +3,8 @@ import {useState} from "react";
 import TextLabel from "../../components/textLabel/TextLabel.jsx";
 import Button from "../../components/button/Button.jsx";
 import readTime from "../../helpers/readTime.js";
-import {useNavigate} from "react-router-dom";
-import allBlogs from "../all-blogs/AllBlogs.jsx";
-import AllBlogs from "../all-blogs/AllBlogs.jsx";
+import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 
 function NewPost() {
@@ -13,47 +12,69 @@ function NewPost() {
     const [subTitleValue, setSubTitleValue] = useState('');
     const [authorValue, setAuthorValue] = useState('');
     const [messageValue, setMessageValue] = useState('');
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
+    const [succes, setSucces] = useState(true);
+    const [newPostId, setNewPostId] = useState(null);
 
     const charCount = messageValue.length;
-    const wordCount = messageValue.trim() === "" ? 0 : messageValue.trim().split(/\s+/).length
 
     let navigate = useNavigate();
 
-    const handleSubmit = (event) => {
 
-       event.preventDefault();
+    const handleSubmit = async (event) => {
 
-        const maxWords = messageValue.split(' ');
+        event.preventDefault();
+
         const date = new Date()
 
         if (!titleValue || !subTitleValue || !authorValue || !messageValue) {
             setError('Zorg dat alle velden zijn ingevuld.');
+            return;
+        } else if (messageValue.length < 300) {
+            setError('Je bericht bevat minder dan 300 karakters.');
+            return;
         } else if (messageValue.length > 2000) {
-            setError('Je bericht bevat meer dan 2000 karakters.');
-        } else if (maxWords.length < 300) {
-            setError('Je bericht bevat minder dan 300 woorden.');
-        } else {
+            setError('Je bericht bevat meer dan 2000 karakters');
+            return;
+        } else
             setError('');
+
+        try {
+            const post = await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/blogposts', {
+                "title": `${titleValue}`,
+                "subtitle": `${subTitleValue}`,
+                "content": `${messageValue}`,
+                "author": `${authorValue}`,
+                "created": date.toISOString(),
+                "readTime": readTime(messageValue),
+                "comments": 0,
+                "shares": 0
+            }, {
+                headers: {
+                    'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d',
+                }
+            })
+            console.log('Post succesvol verzonden', post.data);
+            setNewPostId(post.data.id);
+            setSucces(true);
+                 } catch (error) {
+            console.log("Er ging iets mis bij het versturen");
+            setError("Het is niet gelukt om de blog te plaatsen. Probeer het later opnieuw.");
         }
 
-        console.log(`
-        "title": ${titleValue}
-        "subtitle": ${subTitleValue}
-        "content": ${messageValue}
-        "author": ${authorValue}
-        "created": ${date.toISOString()}
-        "readTime": ${readTime(messageValue)} minuten leestijd
-        "comments": ${0}
-        "shares": ${0}
-        `);
     }
+
 
     return (
         <>
             <h1>Post toevoegen</h1>
 
-
+            {succes === true ? (
+                    <section>
+                    <p>De blogpost is succesvol toegevoegd.</p>
+                    <p>Je kunt deze hier <Link to={"/blog/${newPostId}"}>bekijken.</Link></p>
+                </section>
+            ) : (
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
                     <TextLabel
@@ -103,12 +124,9 @@ function NewPost() {
                     </label>
 
                     <div>
-                    <span style={{color: wordCount < 300 ? 'red' : 'green'}}>
-                    Woorden: {wordCount} / 300
-                    </span>
-                        {" | "}
-                        <span style={{color: charCount > 2000 ? 'red' : 'black'}}>
-                    Karakters: {charCount} / 2000
+                    <span
+                        style={{color: (charCount < 300 || charCount > 2000) ? 'red' : 'black'}}>
+                   Karakters: {charCount} / 2000
                     </span>
                     </div>
 
@@ -119,10 +137,11 @@ function NewPost() {
                         nameOfButton="send"
                         valueOfButton="send"
                         textOnButton="Verstuur"
-                        onClickOfButton={() => navigate("/alle-blogs")}
                     />
                 </form>
             </div>
+            )}
+
         </>
     )
 }

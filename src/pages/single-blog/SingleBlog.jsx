@@ -13,7 +13,7 @@ function SingleBlog() {
 
     async function getBlogpostsById(id) {
         try {
-            const result = await axios.get(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/blogposts/${id}`, {
+            const result = await axios.get(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/blog/${id}`, {
                 headers: {
                     'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
                 }
