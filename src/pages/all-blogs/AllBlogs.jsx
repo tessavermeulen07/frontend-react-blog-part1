@@ -29,7 +29,7 @@ function AllBlogs() {
 
         } catch (error) {
             `Het laden is van de blogposts is niet gelukt`
-            console.log(error);
+            // console.log(error);
         }
     }
 
@@ -55,19 +55,6 @@ function AllBlogs() {
                         }
                     )}
                 </ul>
-
-                {/*<ul className="list-container">*/}
-                {/*    {posts.map((blog) => {*/}
-                {/*            return <li key={blog.id}>*/}
-                {/*                <article className="list-item-container">*/}
-                {/*                <span><Link to={`/blog/${blog.id}`}*/}
-                {/*                            element={<SingleBlog/>}>{blog.title}</Link> ({blog.author})</span>*/}
-                {/*                    <span>{blog.comments} reacties - {blog.shares} keer gedeeld</span>*/}
-                {/*                </article>*/}
-                {/*            </li>*/}
-                {/*        }*/}
-                {/*    )}*/}
-                {/*</ul>*/}
             </div>
         </>
     )
