@@ -13,12 +13,11 @@ function NewPost() {
     const [authorValue, setAuthorValue] = useState('');
     const [messageValue, setMessageValue] = useState('');
     const [error, setError] = useState('');
-    const [succes, setSucces] = useState(true);
+    const [succes, setSucces] = useState(false);
     const [newPostId, setNewPostId] = useState(null);
 
     const charCount = messageValue.length;
 
-    let navigate = useNavigate();
 
 
     const handleSubmit = async (event) => {
@@ -26,6 +25,8 @@ function NewPost() {
         event.preventDefault();
 
         const date = new Date()
+
+
 
         if (!titleValue || !subTitleValue || !authorValue || !messageValue) {
             setError('Zorg dat alle velden zijn ingevuld.');
@@ -54,11 +55,11 @@ function NewPost() {
                     'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d',
                 }
             })
-            console.log('Post succesvol verzonden', post.data);
+
             setNewPostId(post.data.id);
             setSucces(true);
-                 } catch (error) {
-            console.log("Er ging iets mis bij het versturen");
+        } catch (error) {
+
             setError("Het is niet gelukt om de blog te plaatsen. Probeer het later opnieuw.");
         }
 
@@ -70,76 +71,77 @@ function NewPost() {
             <h1>Post toevoegen</h1>
 
             {succes === true ? (
-                    <section>
-                    <p>De blogpost is succesvol toegevoegd.</p>
-                    <p>Je kunt deze hier <Link to={"/blog/${newPostId}"}>bekijken.</Link></p>
-                </section>
+                <div className="page-container-succes">
+                    <section className="succes-section">
+                        <p>De blogpost is succesvol toegevoegd.</p>
+                        <p>Je kunt deze hier <Link to={`/blog/${newPostId}`}>bekijken.</Link></p>
+                    </section>
+                </div>
             ) : (
-            <div className="form-container">
-                <form onSubmit={handleSubmit}>
-                    <TextLabel
-                        labelHTML="title"
-                        startTextLabel="Titel"
-                        typeOfLabel="text"
-                        idOfLabel="title"
-                        nameOfLabel="title"
-                        sizeOfLabel="100"
-                        valueOfLabel={titleValue}
-                        onChangeOfLabel={(e) => setTitleValue(e.target.value)}
-                    />
+                <div className="form-container">
+                    <form onSubmit={handleSubmit}>
+                        <TextLabel
+                            labelHTML="title"
+                            startTextLabel="Titel"
+                            typeOfLabel="text"
+                            idOfLabel="title"
+                            nameOfLabel="title"
+                            sizeOfLabel="100vh"
+                            valueOfLabel={titleValue}
+                            onChangeOfLabel={(e) => setTitleValue(e.target.value)}
+                        />
 
-                    <TextLabel
-                        labelHTML="subtitle"
-                        startTextLabel="Subtitel"
-                        typeOfLabel="text"
-                        idOfLabel="subtitle"
-                        nameOfLabel="subtitle"
-                        sizeOfLabel="100"
-                        valueOfLabel={subTitleValue}
-                        onChangeOfLabel={(e) => setSubTitleValue(e.target.value)}
-                    />
+                        <TextLabel
+                            labelHTML="subtitle"
+                            startTextLabel="Subtitel"
+                            typeOfLabel="text"
+                            idOfLabel="subtitle"
+                            nameOfLabel="subtitle"
+                            sizeOfLabel="100vh"
+                            valueOfLabel={subTitleValue}
+                            onChangeOfLabel={(e) => setSubTitleValue(e.target.value)}
+                        />
 
-                    <TextLabel
-                        labelHTML="author"
-                        startTextLabel="Naam en achternaam"
-                        typeOfLabel="text"
-                        idOfLabel="author"
-                        nameOfLabel="author"
-                        sizeOfLabel="100"
-                        valueOfLabel={authorValue}
-                        onChangeOfLabel={(e) => setAuthorValue(e.target.value)}
-                    />
+                        <TextLabel
+                            labelHTML="author"
+                            startTextLabel="Naam en achternaam"
+                            typeOfLabel="text"
+                            idOfLabel="author"
+                            nameOfLabel="author"
+                            sizeOfLabel="100vh"
+                            valueOfLabel={authorValue}
+                            onChangeOfLabel={(e) => setAuthorValue(e.target.value)}
+                        />
 
-                    <label htmlFor="message">
-                        <p>Blogpost</p>
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="15"
-                            cols="100"
-                            value={messageValue}
-                            onChange={(e) => setMessageValue(e.target.value)}
-                        >
+                        <label htmlFor="message">
+                            <p>Blogpost</p>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="15"
+                                cols="100vh"
+                                value={messageValue}
+                                onChange={(e) => setMessageValue(e.target.value)}
+                            >
                 </textarea>
-                    </label>
+                        </label>
 
-                    <div>
-                    <span
-                        style={{color: (charCount < 300 || charCount > 2000) ? 'red' : 'black'}}>
+                        <div>
+                    <span>
                    Karakters: {charCount} / 2000
                     </span>
-                    </div>
+                        </div>
 
-                    {error && <p>{error}</p>}
+                        {error && <p className="error-message">{error}</p>}
 
-                    <Button
-                        typeOfButton="submit"
-                        nameOfButton="send"
-                        valueOfButton="send"
-                        textOnButton="Verstuur"
-                    />
-                </form>
-            </div>
+                        <Button
+                            typeOfButton="submit"
+                            nameOfButton="send"
+                            valueOfButton="send"
+                            textOnButton="Verstuur"
+                        />
+                    </form>
+                </div>
             )}
 
         </>

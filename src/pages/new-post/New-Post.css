@@ -6,14 +6,34 @@ h1 {
     text-align: center;
 }
 
+.page-container-succes {
+    display: flex;
+    justify-content: center;
+}
+
+.succes-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #FFFFFF;
+    width: 80%;
+    max-width: 900px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .form-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-
-
     margin-bottom: 20px;
+}
+
+form {
+    width: 80%;
+    max-width: 900px;
 }
 
 textarea {
@@ -21,4 +41,8 @@ textarea {
     border-radius: 5px;
     width: 100%;
     padding: 10px;
+}
+
+.error-message {
+    color: #DC143C
 }

@@ -6,9 +6,7 @@ function Home() {
         <>
             <header className="page-container">
                 <img src={logo} alt="Company logo"/>
-
             </header>
-            <h1>Dit is de Home pagina</h1>
         </>
     )
 }
