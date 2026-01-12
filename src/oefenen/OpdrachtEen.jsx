@@ -81,10 +81,10 @@ function OpdrachtEen() {
                     subtitle: "Een culinaire reis door het prachtige Italië",
                     title: "De Smaken van Italië"
                 }, {
-                headers: {
-                    'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
-                }
-            })
+                    headers: {
+                        'novi-education-project-id': '268aff3c-ae58-411a-a55f-e0c1ec05146d'
+                    }
+                })
             console.log(change.data);
             console.log('Post succesvol gewijzigd');
         } catch (error) {
